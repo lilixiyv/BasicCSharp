@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Homework1
+﻿namespace Homework1
 {
     public class Program
     {
@@ -44,6 +38,30 @@ namespace Homework1
 
     public class Counting : ICountableVariable
     {
+        public int variable = 0;
+        public int readtimes = 0;
+        public int writetimes = 0;
+        private int temp = 0;
+        public int Variable
+        {
+            get
+            {
+                readtimes++;
+                return variable;
+            }
+            set
+            {
+                temp = variable;
+                variable = value > 0 ? value : 0;
+                if (temp != variable)
+                {
+                    writetimes++;
+                }
+                
+            }
+        }
+        public int ReadTimes { get => readtimes; }
+        public int WriteTimes { get => writetimes; }
         // 需要实现：分别统计变量Variable被读取、被修改的次数，只允许修改Counting类中的代码
         // 要求：
         // 1. Variable 不能被外部程序赋值为负数。若被赋为负数，则将它代表的值置为0。
